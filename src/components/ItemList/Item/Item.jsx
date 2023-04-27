@@ -1,6 +1,23 @@
+
 import axios from 'axios';
 import './Item.css'
+
 function Item(props) {
+
+    function buy(itemId) {
+
+        axios({
+            method: 'PUT',
+            url: `/items/${itemId}`
+        }).then(response => { 
+            props.getItems();
+        }).catch(err => {
+            alert('error getting items');
+            console.log(err);
+        })
+
+    }
+
 
     const removeFromItemList = (idToDelete) => {
         axios({
@@ -21,7 +38,7 @@ function Item(props) {
                     <h3>{item.name}</h3>
                     <h3>{item.quantity} {item.unit}</h3>
                     <div className='button-div'>
-                        <button>Buy</button>
+                        <button onClick={() => {buy(item.id)}}>Buy</button> 
                         <button onClick={() => {removeFromItemList(item.id)}}>Remove</button>
                     </div>
                 </div>

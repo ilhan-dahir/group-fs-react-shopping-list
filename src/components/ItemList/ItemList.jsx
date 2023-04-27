@@ -3,7 +3,6 @@ import Item from './Item/Item';
 import './ItemList.css'
 
 function ItemList(props) {
-
     function handleReset() {
         axios({
             method: 'PUT',
@@ -14,6 +13,17 @@ function ItemList(props) {
             console.log('The Reset failed miserably');
         })
     }
+    function handleDelete() {
+        axios({
+            method: 'Delete',
+            url: '/items/'
+        }).then((response) => {
+            console.log('All items are deleted');
+            props.getItems();
+        }).catch((error) => {
+            console.log("Delete failed ");
+        })
+    }
 
     return (
         <>
@@ -22,10 +32,10 @@ function ItemList(props) {
                 {/* Reset button will set purchaseStatus of all items to FALSE - ELI */}
                 <button class='reset-btn' onClick={handleReset}>Reset</button>
                 {/* Clear button, clear that table bby -  ILHAN*/}
-                <button class='clear-btn'>Clear</button>
+                <button class='clear-btn' onClick={handleDelete}>Clear</button>
             </div>
 
-            <Item itemListArray={props.itemListArray} getItems={props.getItems}/>
+            <Item itemListArray={props.itemListArray} getItems={props.getItems} />
         </>
     );
 }
