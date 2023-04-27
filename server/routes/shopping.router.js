@@ -36,4 +36,20 @@ router.post('/', (req, res) => {
         })
 })
 
+router.put('/reset', (req, res) => {
+    let sqlText = `
+    UPDATE "shopping_cart"
+    SET "purchaseStatus" = 'FALSE';
+    `
+
+    pool.query(sqlText)
+    .then((response) => {
+        console.log('Successfully Reset');
+        res.send(203);
+    }).catch((error) => {
+        console.log('Database side of reset failed');
+        res.send(500);
+    })
+})
+
 module.exports = router;
