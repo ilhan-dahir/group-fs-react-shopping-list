@@ -24,7 +24,7 @@ function ItemList(props) {
                 <button>Clear</button>
             </div>
 
-            <Item itemListArray={props.itemListArray} getItem={props.getItem}/>
+            <Item itemListArray={props.itemListArray} getItems={props.getItems}/>
         </>
     );
 }
