@@ -6,7 +6,7 @@ function ItemList(props) {
     function handleReset() {
         axios({
             method: 'PUT',
-            url: '/items/reset'
+            url: '/items/'
         }).then((response) => {
             console.log('The items have all been reset');
         }).catch((error) => {
