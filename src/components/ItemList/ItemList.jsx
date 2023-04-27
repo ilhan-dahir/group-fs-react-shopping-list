@@ -27,12 +27,12 @@ function ItemList(props) {
 
     return (
         <>
-            <h1 class='list-title'>Shopping List</h1>
+            <h1 className='list-title'>Shopping List</h1>
             <div>
                 {/* Reset button will set purchaseStatus of all items to FALSE - ELI */}
-                <button class='reset-btn' onClick={handleReset}>Reset</button>
+                <button className='reset-btn' onClick={handleReset}>Reset</button>
                 {/* Clear button, clear that table bby -  ILHAN*/}
-                <button class='clear-btn' onClick={handleDelete}>Clear</button>
+                <button className='clear-btn' onClick={handleDelete}>Clear</button>
             </div>
 
             <Item itemListArray={props.itemListArray} getItems={props.getItems} />

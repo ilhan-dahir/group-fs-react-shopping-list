@@ -32,9 +32,9 @@ function Item(props) {
     }
 
     return (
-        <div class='item-card-container'>
+        <div className='item-card-container'>
             {props.itemListArray.map(item => (
-                <div class='item-card' key={item.id}>
+                <div className='item-card' key={item.id}>
                     <h3>{item.name}</h3>
                     <h3>{item.quantity} {item.unit}</h3>
                     <div className='button-div'>

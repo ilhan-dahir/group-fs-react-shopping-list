@@ -38,7 +38,7 @@ function AddItem(props) {
                 </label>
                 <input
                     type="text"
-                    class='item-input-box'
+                    className='item-input-box'
                     value={newItemName}
                     name="itemInput"
                     onChange={(evt) => setNewItemName(evt.target.value)}
@@ -49,7 +49,7 @@ function AddItem(props) {
                     </label>
                     <input
                         type="text"
-                        class='quantity-input-box'
+                        className='quantity-input-box'
                         value={newItemQuantity}
                         name="quantityInput"
                         onChange={(evt) => setNewItemQuantity(evt.target.value)}
@@ -59,13 +59,13 @@ function AddItem(props) {
                     </label>
                     <input
                         type="Unit"
-                        class='input-box'
+                        className='input-box'
                         value={newItemUnit}
                         name="unitInput"
                         onChange={(evt) => setNewItemUnit(evt.target.value)}
                     />
                 </div>
-                <button class='submit-btn' type="submit">Save</button>
+                <button className='submit-btn' type="submit">Save</button>
             </form>
         </>
     );
