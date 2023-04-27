@@ -1,5 +1,9 @@
 .banner-header {
-  background-color: silver;
-  text-align: center;
+  /* background: rgb(139,173,173);
+background: linear-gradient(30deg, rgba(139,173,173,1) 0%, rgba(249,249,249,1) 27%, rgba(45,96,253,1) 100%); */
+width: 100%;
+background: rgb(34,193,195);
+background: linear-gradient(180deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+text-align: center;
   padding: 0.25em;
 }

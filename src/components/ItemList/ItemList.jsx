@@ -8,7 +8,7 @@ function ItemList(props) {
             method: 'PUT',
             url: '/items/'
         }).then((response) => {
-            console.log('The items have all been reset');
+            props.getItems();
         }).catch((error) => {
             console.log('The Reset failed miserably');
         })

@@ -1,4 +1,18 @@
 main {
   width: 90%;
   margin: auto;
+  height: 100%;
+  padding: 1% 10% 1% 1%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background: rgb(34,193,195);
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+
 }
+
+body {
+  background-color: sandybrown;
+}
+
+
+
