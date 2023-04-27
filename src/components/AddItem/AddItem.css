@@ -1,0 +1,22 @@
+.input-box {
+    width: 20%;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.item-input-box {
+    width: 36.5%;
+    margin-left: 44px;
+    margin-bottom: 10px;
+}
+
+.quantity-input-box {
+    width: 10%;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.submit-btn {
+    margin-top: 10px;
+    font-size: 16px;
+}

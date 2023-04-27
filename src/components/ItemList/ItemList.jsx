@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Item from './Item/Item';
+import './ItemList.css'
 
 function ItemList(props) {
     function handleReset() {
@@ -26,12 +27,12 @@ function ItemList(props) {
 
     return (
         <>
-            <h1>Shopping List</h1>
+            <h1 class='list-title'>Shopping List</h1>
             <div>
                 {/* Reset button will set purchaseStatus of all items to FALSE - ELI */}
-                <button onClick={handleReset}>Reset</button>
+                <button class='reset-btn' onClick={handleReset}>Reset</button>
                 {/* Clear button, clear that table bby -  ILHAN*/}
-                <button onClick={handleDelete}>Clear</button>
+                <button class='clear-btn' onClick={handleDelete}>Clear</button>
             </div>
 
             <Item itemListArray={props.itemListArray} getItems={props.getItems} />

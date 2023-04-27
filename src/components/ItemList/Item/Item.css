@@ -1,0 +1,26 @@
+.item-card {
+    border: 1px solid black;
+    border-radius: 5%;
+    width: 15%;
+    padding: 15px;
+    margin: 15px;
+    height: 150px;
+}
+
+.item-card-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.item-card h3 {
+    text-align: center;
+}
+
+.button-div{
+    display: flex;
+    justify-content: center;
+}
+
+.button-div button {
+    margin: 5px;
+}
