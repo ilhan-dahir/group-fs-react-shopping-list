@@ -54,7 +54,7 @@ router.delete('/:id', (req, res) => {
             console.log('Error making DELETE request to database', error);
             res.sendStatus(500);
         })
-
+})
 
 router.put('/reset', (req, res) => {
     let sqlText = `
@@ -63,13 +63,32 @@ router.put('/reset', (req, res) => {
     `
 
     pool.query(sqlText)
-    .then((response) => {
-        console.log('Successfully Reset');
-        res.send(203);
-    }).catch((error) => {
-        console.log('Database side of reset failed');
-        res.send(500);
-    })
+        .then((response) => {
+            console.log('Successfully Reset');
+            res.send(203);
+        }).catch((error) => {
+            console.log('Database side of reset failed');
+            res.send(500);
+        })
+
+})
+//Setup a delete route
+
+router.delete('/', (req, res) => {
+    console.log('DELETE RES >>>', req);
+    let sqlText = `
+    DELETE FROM shopping_cart;
+    `;
+    pool.query(sqlText)
+        .then((response) => {
+            console.log('Items Deleted');
+            res.sendStatus(201);
+        })
+        .catch((error) => {
+            console.log('items /delete failed ', error);
+            res.sendStatus(500);
+        })
+
 })
 
 module.exports = router;
