@@ -82,7 +82,7 @@ router.delete('/:id', (req, res) => {
         })
 })
 
-router.put('/reset', (req, res) => {
+router.put('/', (req, res) => {
     let sqlText = `
     UPDATE "shopping_cart"
     SET "purchaseStatus" = 'FALSE';
