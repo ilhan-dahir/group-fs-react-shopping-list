@@ -36,4 +36,23 @@ router.post('/', (req, res) => {
         })
 })
 
+router.delete('/:id', (req, res) => {
+    let id = req.params.id;
+
+    const sqlText = `
+        DELETE FROM "shopping_cart"
+            WHERE "id"=$1;
+    `;
+
+    pool.query(sqlText, [id])
+        .then((result) => {
+            console.log('Deleted');
+            // Send "Okay" status if the pool.query was sucessful
+            res.sendStatus(200)
+        }).catch((error) => {
+            console.log('Error making DELETE request to database', error);
+            res.sendStatus(500);
+        })
+})
+
 module.exports = router;
