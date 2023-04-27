@@ -36,4 +36,26 @@ router.post('/', (req, res) => {
         })
 })
 
+router.put('/:id', (req, res) => {
+
+    const updateId = req.params.id
+
+    const sqlText = `
+        UPDATE  shopping_cart 
+            SET "purchaseStatus" = TRUE
+            WHERE "id" = $1;
+    `;
+
+    // Let sql sanitize your inputs (NO Bobby Drop Tables here!)
+    // the $1, $2, etc get substituted with the values from the array below
+    pool.query(sqlText, [updateId])
+        .then((result) => {
+            res.sendStatus(201);
+        })
+        .catch((error) => {
+            console.log(`Error updating database query ${sqlText}`, error);
+            res.sendStatus(500); // Good server always responds
+        })
+})
+
 module.exports = router;
