@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from 'axios';
+import './AddItem.css';
 
 function AddItem(props) {
 
@@ -33,35 +34,38 @@ function AddItem(props) {
             <h1>Add an Item</h1>
             <form onSubmit={handleItemsSubmit}>
                 <label>
-                    Item
+                    Item:
                 </label>
                 <input
                     type="text"
+                    class='item-input-box'
                     value={newItemName}
                     name="itemInput"
                     onChange={(evt) => setNewItemName(evt.target.value)}
                 />
                 <div>
                     <label>
-                        Quantity
+                        Quantity:
                     </label>
                     <input
                         type="text"
+                        class='quantity-input-box'
                         value={newItemQuantity}
                         name="quantityInput"
                         onChange={(evt) => setNewItemQuantity(evt.target.value)}
                     />
                     <label>
-                        Unit
+                        Unit:
                     </label>
                     <input
                         type="Unit"
+                        class='input-box'
                         value={newItemUnit}
                         name="unitInput"
                         onChange={(evt) => setNewItemUnit(evt.target.value)}
                     />
                 </div>
-                <button type="submit">Save</button>
+                <button class="submit-btn" type="submit">Save</button>
             </form>
         </>
     );

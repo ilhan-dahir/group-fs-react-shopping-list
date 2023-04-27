@@ -1,13 +1,14 @@
+import './Item.css'
+
 function Item(props) {
 
     return(
-        <div>
+        <div class='item-card-container'>
             {props.itemListArray.map(item => (
-                <div key={item.id}>
+                <div class='item-card' key={item.id}>
                     <h3>{item.name}</h3>
-                    <h3>{item.quantity}</h3>
-                    <h3>{item.unit}</h3>
-                    <div>
+                    <span><h3>{item.quantity} {item.unit}</h3></span>
+                    <div class='button-div'>
                         <button>Buy</button>
                         <button>Remove</button>
                     </div>
