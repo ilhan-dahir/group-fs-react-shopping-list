@@ -16,16 +16,16 @@ function App() {
     }, [])
 
     const getItems = () => {
-        axios.get('/')
-            .then(response => {
-                console.log('RES!', response);
-                //setItemListArray(response.params)
-                //console.log('setItemArray',setItemListArray);
-            })
-            .catch(err => {
-                alert('error getting items');
-                console.log(err);
-            })
+        axios({
+            method: 'GET',
+            url: '/items'
+        }).then(response => { 
+            setItemListArray(response.data)
+            //console.log('setItemArray',setItemListArray);
+        }).catch(err => {
+            alert('error getting items');
+            console.log(err);
+        })
     }
 
     return (
@@ -38,6 +38,7 @@ function App() {
                 />
                 <ItemList
                     itemListArray={itemListArray}
+                    getItems={getItems}
                 />
             </main>
         </div>

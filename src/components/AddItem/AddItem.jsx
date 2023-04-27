@@ -32,9 +32,9 @@ function AddItem(props) {
         <>
             <h1>Add an Item</h1>
             <form onSubmit={handleItemsSubmit}>
-                <lable>
+                <label>
                     Item
-                </lable>
+                </label>
                 <input
                     type="text"
                     value={newItemName}
@@ -42,18 +42,18 @@ function AddItem(props) {
                     onChange={(evt) => setNewItemName(evt.target.value)}
                 />
                 <div>
-                    <lable>
+                    <label>
                         Quantity
-                    </lable>
+                    </label>
                     <input
                         type="text"
                         value={newItemQuantity}
                         name="quantityInput"
                         onChange={(evt) => setNewItemQuantity(evt.target.value)}
                     />
-                    <lable>
+                    <label>
                         Unit
-                    </lable>
+                    </label>
                     <input
                         type="Unit"
                         value={newItemUnit}
