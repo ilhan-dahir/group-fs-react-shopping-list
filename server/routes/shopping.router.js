@@ -9,7 +9,6 @@ router.get('/', (req, res) => {
     const sqlText = `SELECT * FROM shopping_cart ORDER BY name ASC;`;
     pool.query(sqlText)
         .then((result) => {
-            console.log(`Got stuff back from the database`, result);
             res.send(result.rows);
         })
         .catch((error) => {
@@ -89,13 +88,13 @@ router.put('/', (req, res) => {
     `
 
     pool.query(sqlText)
-        .then((response) => {
-            console.log('Successfully Reset');
-            res.send(203);
-        }).catch((error) => {
-            console.log('Database side of reset failed');
-            res.send(500);
-        })
+    .then((response) => {
+        console.log('Successfully Reset');
+        res.send(203);
+    }).catch((error) => {
+        console.log('Database side of reset failed');
+        res.send(500);
+    })
 
 })
 //Setup a delete route

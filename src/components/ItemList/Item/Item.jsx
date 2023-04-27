@@ -31,16 +31,29 @@ function Item(props) {
         })
     }
 
+    const Buttons = (itemRendered) => {
+        console.log(itemRendered.purchaseStatus);
+        console.log(itemRendered.name);
+        if (itemRendered.purchaseStatus === false) {
+            return (
+                <div className='button-div'>
+                    <button onClick={() => {buy(itemRendered.id)}}>Buy</button> 
+                    <button onClick={() => {removeFromItemList(itemRendered.id)}}>Remove</button>
+                </div>
+            )
+        }
+        else {
+            return <p>Purchased</p>
+        }
+    }
+
     return (
         <div class='item-card-container'>
             {props.itemListArray.map(item => (
                 <div class='item-card' key={item.id}>
                     <h3>{item.name}</h3>
                     <h3>{item.quantity} {item.unit}</h3>
-                    <div className='button-div'>
-                        <button onClick={() => {buy(item.id)}}>Buy</button> 
-                        <button onClick={() => {removeFromItemList(item.id)}}>Remove</button>
-                    </div>
+                    {Buttons(item)}
                 </div>
             ))}
         </div>
