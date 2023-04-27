@@ -36,6 +36,7 @@ router.post('/', (req, res) => {
         })
 })
 
+
 router.delete('/:id', (req, res) => {
     let id = req.params.id;
 
@@ -53,6 +54,22 @@ router.delete('/:id', (req, res) => {
             console.log('Error making DELETE request to database', error);
             res.sendStatus(500);
         })
+
+
+router.put('/reset', (req, res) => {
+    let sqlText = `
+    UPDATE "shopping_cart"
+    SET "purchaseStatus" = 'FALSE';
+    `
+
+    pool.query(sqlText)
+    .then((response) => {
+        console.log('Successfully Reset');
+        res.send(203);
+    }).catch((error) => {
+        console.log('Database side of reset failed');
+        res.send(500);
+    })
 })
 
 module.exports = router;
