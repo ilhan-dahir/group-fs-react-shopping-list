@@ -13,14 +13,14 @@ function AddItem(props) {
     }
 
     const addItemToList = () => {
-        axios.post('/', { name: newItemName, quantity: newItemQuantity, unit: newItemUnit })
+        axios.post('/items', { name: newItemName, quantity: newItemQuantity, unit: newItemUnit })
             .then(response => {
                 // clear inputs
                 setNewItemName('');
                 setNewItemQuantity('');
                 setNewItemUnit('');
 
-                // props.getItem();// setup getItems
+                props.getItems();// setup getItems
             })
             .catch(err => {
                 alert('Error Adding Items');

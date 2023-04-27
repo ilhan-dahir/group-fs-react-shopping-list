@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Shopping List Applications",
   "main": "index.js",
-  "proxy": "http://localhost:3000",
+  "proxy": "http://localhost:5001",
   "scripts": {
     "start": "react-scripts build && node server/server.js",
     "client": "react-scripts start",
