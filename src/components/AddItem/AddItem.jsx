@@ -24,7 +24,7 @@ function AddItem(props) {
                 props.getItems();// setup getItems
             })
             .catch(err => {
-                alert('Please fill the required feilds');
+                alert('Please fill the required fields');
                 console.log(err);
             })
     };
