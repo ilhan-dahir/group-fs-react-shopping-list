@@ -11,6 +11,12 @@ function Item(props) {
     const setNewItemQuantity = props.newItem.setNewItemQuantity;
     const setNewItemUnit = props.newItem.setNewItemUnit;
 
+    const editToggle = props.newItem.editToggle;
+    const setEditToggle = props.newItem.setEditToggle;
+
+    const editItemId = props.newItem.editItemId;
+    const setEditItemId = props.newItem.setEditItemId;
+
 
     function buy(itemId) {
 
@@ -40,8 +46,8 @@ function Item(props) {
     }
 
     const Buttons = (itemRendered) => {
-        console.log(itemRendered.purchaseStatus);
-        console.log(itemRendered.name);
+        // console.log(itemRendered.purchaseStatus);
+        // console.log(itemRendered.name);
         if (itemRendered.purchaseStatus === false) {
             return (
                 <div className='button-div'>
@@ -56,12 +62,13 @@ function Item(props) {
     }
 
     const editItem = (item) => {
-
         //Get the specifc item from the edit button pressed.
         //Display those values in the userinput fields.
         fillInInputs(item);
         //When the user clicks the save button. Instead of it adding a new item to the 
         //list, have it update the current selected one based on its id.
+        setEditToggle(true);
+        setEditItemId(item.id);
             //Maybe a conditional for the save button. TO know if its updating or adding 
             //in a new item.
             //PUT REQUEST
@@ -79,7 +86,6 @@ function Item(props) {
         <div className='item-card-container'>
             {props.itemListArray.map(item => (
                 <div className='item-card' key={item.id}>
-                    {console.log(item.id)}
                     <button onClick={() => {editItem(item)}}>Edit</button>
                     <h3>{item.name}</h3>
                     <h3>{item.quantity} {item.unit}</h3>

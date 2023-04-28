@@ -12,13 +12,20 @@ function App() {
     const [newItemName, setNewItemName] = useState('');
     const [newItemQuantity, setNewItemQuantity] = useState('');
     const [newItemUnit, setNewItemUnit] = useState('') ;
+    const [editToggle, setEditToggle] = useState(false) ;
+    const [editItemId, setEditItemId] = useState(0) ;
+
     const newItem = {
         newItemName,
         newItemQuantity,
         newItemUnit,
         setNewItemName,
         setNewItemQuantity,
-        setNewItemUnit
+        setNewItemUnit,
+        editToggle,
+        setEditToggle,
+        editItemId,
+        setEditItemId
     };
 
     //On load, get items

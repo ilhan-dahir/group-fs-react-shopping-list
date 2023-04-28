@@ -11,6 +11,12 @@ function AddItem(props) {
     const setNewItemQuantity = props.newItem.setNewItemQuantity;
     const setNewItemUnit = props.newItem.setNewItemUnit;
 
+    const editToggle = props.newItem.editToggle;
+    const setEditToggle = props.newItem.setEditToggle;
+
+    const editItemId = props.newItem.editItemId;
+    const setEditItemId = props.newItem.setEditItemId;
+
     const handleItemsSubmit = (event) => {
         event.preventDefault();
         addItemToList();
@@ -32,10 +38,47 @@ function AddItem(props) {
             })
     };
 
+    //Update Item PUT request:
+    function updateItemInfo() {
+        //Reset Toggle;
+        setEditToggle(false);
+
+        axios({
+            method: 'PUT',
+            url: `/items/item/${editItemId}`,
+            data: {
+                newItemName,
+                newItemQuantity,
+                newItemUnit
+            }
+        }).then(response => { 
+            props.getItems();
+        }).catch(err => {
+            alert('error getting items');
+            console.log(err);
+        })
+    }
+
+    //Conditionally render save button:
+    const saveButton = () => {
+        // console.log(itemRendered.purchaseStatus);
+        // console.log(itemRendered.name);
+        if (editToggle === false) {
+            return (
+                <button className='submit-btn' onClick={handleItemsSubmit}>Save</button>  
+            )
+        }
+        else {
+            return (
+                <button type="reset" onClick={() => {updateItemInfo()}}>Save Edit</button>
+            )
+        }
+    }
+
     return (
         <>
             <h1>Add an Item</h1>
-            <form onSubmit={handleItemsSubmit}>
+            <form>
                 <label>
                     Item
                 </label>
@@ -68,7 +111,7 @@ function AddItem(props) {
                         onChange={(evt) => setNewItemUnit(evt.target.value)}
                     />
                 </div>
-                <button className='submit-btn' type="submit">Save</button>
+                {saveButton()}
             </form>
         </>
     );

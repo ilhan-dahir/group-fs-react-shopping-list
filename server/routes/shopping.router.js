@@ -82,6 +82,30 @@ router.delete('/:id', (req, res) => {
         })
 })
 
+//Update item info
+router.put('/item/:id', (req, res) => {
+    let itemObject = req.body;
+    let idToUpdate = req.params.id;
+    let sqlValue = [itemObject.newItemName, itemObject.newItemQuantity, itemObject.newItemUnit, idToUpdate];
+
+    let sqlText = `
+    UPDATE "shopping_cart"
+    SET "name"=$1, "quantity"=$2, unit=$3
+    WHERE id=$4;
+    `
+
+    pool.query(sqlText, sqlValue)
+    .then((response) => {
+        console.log('Successfully Reset');
+        res.send(203);
+    }).catch((error) => {
+        console.log('Database side of reset failed');
+        res.send(500);
+    })
+
+})
+
+//Update purchase status
 router.put('/', (req, res) => {
     let sqlText = `
     UPDATE "shopping_cart"
