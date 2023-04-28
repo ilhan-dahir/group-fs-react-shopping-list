@@ -4,9 +4,12 @@ import './AddItem.css';
 
 function AddItem(props) {
 
-    const [newItemName, setNewItemName] = useState('')
-    const [newItemQuantity, setNewItemQuantity] = useState('')
-    const [newItemUnit, setNewItemUnit] = useState('')
+    const newItemName = props.newItem.newItemName;
+    const newItemQuantity = props.newItem.newItemQuantity;
+    const newItemUnit = props.newItem.newItemUnit;
+    const setNewItemName = props.newItem.setNewItemName;
+    const setNewItemQuantity = props.newItem.setNewItemQuantity;
+    const setNewItemUnit = props.newItem.setNewItemUnit;
 
     const handleItemsSubmit = (event) => {
         event.preventDefault();

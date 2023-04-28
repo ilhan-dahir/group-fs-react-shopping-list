@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
 
-// Setup a GET route to get all the guest from the database
+
+// Setup a GET route to get all the items from the database
 router.get('/', (req, res) => {
     // When you fetch all things in these GET routes, strongly encourage ORDER BY
     // so that things always come back in a consistent order 
@@ -17,7 +18,7 @@ router.get('/', (req, res) => {
         })
 })
 
-// Setup a POST route to add a new guest to the database
+// Setup a POST route to add a new item to the database
 router.post('/', (req, res) => {
     const item = req.body;
     const sqlText = `

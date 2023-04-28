@@ -3,6 +3,7 @@ import Item from './Item/Item';
 import './ItemList.css'
 
 function ItemList(props) {
+
     function handleReset() {
         axios({
             method: 'PUT',
@@ -35,7 +36,11 @@ function ItemList(props) {
                 <button className='clear-btn' onClick={handleDelete}>Clear</button>
             </div>
 
-            <Item itemListArray={props.itemListArray} getItems={props.getItems} />
+            <Item 
+                itemListArray={props.itemListArray} 
+                getItems={props.getItems} 
+                newItem={props.newItem}
+            />
         </>
     );
 }
