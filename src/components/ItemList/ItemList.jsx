@@ -102,8 +102,20 @@ function ItemList(props) {
                 {/* Clear button, clear that table bby -  ILHAN*/}
                 <button className='clear-btn' onClick={handleDelete}>Clear</button>
             </div>
-
-            <Item itemListArray={props.itemListArray} getItems={props.getItems} />
+            <div className='item-card-container'>
+            {
+                props.itemListArray.map((item) => {
+                    return (
+                        <Item 
+                            key={item.id}    
+                            item={item}
+                            getItems={props.getItems}
+                        />
+                    )
+                })
+            }
+            </div>
+            {/* <Item itemListArray={props.itemListArray} getItems={props.getItems} /> */}
         </>
     );
 }

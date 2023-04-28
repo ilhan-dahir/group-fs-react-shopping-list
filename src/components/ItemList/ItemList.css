@@ -6,3 +6,19 @@
 .list-title {
     margin-top: 2rem;
 }
+
+.green {
+    background-color: rgb(169, 251, 47, 0.75);
+}
+
+.red {
+    background-color: rgba(255, 0, 0, 0.743);
+}
+
+.grey {
+    background-color: rgba(160, 240, 160, 0.815);
+}
+
+.bisque {
+    background-color: white;
+}
