@@ -24,7 +24,7 @@ function AddItem(props) {
                 props.getItems();// setup getItems
             })
             .catch(err => {
-                alert('Error Adding Items');
+                alert('Please fill the required fields');
                 console.log(err);
             })
     };
@@ -37,6 +37,7 @@ function AddItem(props) {
                     Item
                 </label>
                 <input
+                    placeholder="Required"
                     type="text"
                     className='item-input-box'
                     value={newItemName}
@@ -48,6 +49,7 @@ function AddItem(props) {
                         Quantity
                     </label>
                     <input
+                        placeholder="Required"
                         type="text"
                         className='quantity-input-box'
                         value={newItemQuantity}
@@ -58,6 +60,7 @@ function AddItem(props) {
                         Unit
                     </label>
                     <input
+                        placeholder="Required"
                         type="Unit"
                         className='input-box'
                         value={newItemUnit}
