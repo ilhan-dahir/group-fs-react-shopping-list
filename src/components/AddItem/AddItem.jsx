@@ -5,12 +5,18 @@ import Swal from "sweetalert2";
 
 function AddItem(props) {
 
-    const [newItemName, setNewItemName] = useState('')
-    const [newItemQuantity, setNewItemQuantity] = useState('')
-    const [newItemUnit, setNewItemUnit] = useState('')
-    const [requiredName, setRequiredName] = useState(false)
-    const [requiredQuantity, setRequiredQuantity] = useState(false)
-    const [requiredUnit, setRequiredUnit] = useState(false)
+    const newItemName = props.newItem.newItemName;
+    const newItemQuantity = props.newItem.newItemQuantity;
+    const newItemUnit = props.newItem.newItemUnit;
+    const setNewItemName = props.newItem.setNewItemName;
+    const setNewItemQuantity = props.newItem.setNewItemQuantity;
+    const setNewItemUnit = props.newItem.setNewItemUnit;
+
+    const editToggle = props.newItem.editToggle;
+    const setEditToggle = props.newItem.setEditToggle;
+
+    const editItemId = props.newItem.editItemId;
+    const setEditItemId = props.newItem.setEditItemId;
 
     const handleItemsSubmit = (event) => {
         event.preventDefault();
@@ -53,6 +59,43 @@ function AddItem(props) {
 
     };
 
+    //Update Item PUT request:
+    function updateItemInfo() {
+        //Reset Toggle;
+        setEditToggle(false);
+
+        axios({
+            method: 'PUT',
+            url: `/items/item/${editItemId}`,
+            data: {
+                newItemName,
+                newItemQuantity,
+                newItemUnit
+            }
+        }).then(response => { 
+            props.getItems();
+        }).catch(err => {
+            alert('error getting items');
+            console.log(err);
+        })
+    }
+
+    //Conditionally render save button:
+    const saveButton = () => {
+        // console.log(itemRendered.purchaseStatus);
+        // console.log(itemRendered.name);
+        if (editToggle === false) {
+            return (
+                <button className='submit-btn' onClick={handleItemsSubmit}>Save</button>  
+            )
+        }
+        else {
+            return (
+                <button type="reset" onClick={() => {updateItemInfo()}}>Save Edit</button>
+            )
+        }
+    }
+
     const requiredNameField = () => {
         if (requiredName) {
             return 'item-input-box red-background'
@@ -85,7 +128,7 @@ function AddItem(props) {
     return (
         <>
             <h1>Add an Item</h1>
-            <form onSubmit={handleItemsSubmit}>
+            <form>
                 <label>
                     Item
                 </label>
@@ -121,7 +164,7 @@ function AddItem(props) {
                         onChange={(evt) => setNewItemUnit(evt.target.value)}
                     />
                 </div>
-                <button className='submit-btn' type="submit">Save</button>
+                {saveButton()}
             </form>
         </>
     );

@@ -9,6 +9,24 @@ import ItemList from '../ItemList/ItemList';
 
 function App() {
     const [itemListArray, setItemListArray] = useState([]);
+    const [newItemName, setNewItemName] = useState('');
+    const [newItemQuantity, setNewItemQuantity] = useState('');
+    const [newItemUnit, setNewItemUnit] = useState('') ;
+    const [editToggle, setEditToggle] = useState(false) ;
+    const [editItemId, setEditItemId] = useState(0) ;
+
+    const newItem = {
+        newItemName,
+        newItemQuantity,
+        newItemUnit,
+        setNewItemName,
+        setNewItemQuantity,
+        setNewItemUnit,
+        editToggle,
+        setEditToggle,
+        editItemId,
+        setEditItemId
+    };
 
     //On load, get items
     useEffect(() => {
@@ -35,10 +53,12 @@ function App() {
                 {/* <p>Under Construction...</p> */}
                 < AddItem
                     getItems={getItems}
+                    newItem={newItem}
                 />
                 <ItemList
                     itemListArray={itemListArray}
                     getItems={getItems}
+                    newItem={newItem}
                 />
             </main>
         </div>
