@@ -18,6 +18,10 @@ function AddItem(props) {
     const editItemId = props.newItem.editItemId;
     const setEditItemId = props.newItem.setEditItemId;
 
+    const [requiredName, setRequiredName] = useState(false);
+    const [requiredQuantity, setRequiredQuantity] = useState(false);
+    const [requiredUnit, setRequiredUnit] = useState(false);
+
     const handleItemsSubmit = (event) => {
         event.preventDefault();
         addItemToList();

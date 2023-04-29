@@ -101,7 +101,7 @@ router.put('/item/:id', (req, res) => {
     pool.query(sqlText, sqlValue)
     .then((response) => {
         console.log('Successfully Reset');
-        res.send(203);
+        res.sendStatus(203);
     }).catch((error) => {
         console.log('Database side of reset failed');
         res.send(500);
