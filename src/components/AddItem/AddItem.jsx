@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from 'axios';
 import './AddItem.css';
+import Swal from "sweetalert2";
 
 function AddItem(props) {
 
@@ -23,19 +24,39 @@ function AddItem(props) {
     }
 
     const addItemToList = () => {
-        axios.post('/items', { name: newItemName, quantity: newItemQuantity, unit: newItemUnit })
+        if (newItemName !== '' &&  newItemQuantity !== '' && newItemUnit !== '') {
+            axios.post('/items', { name: newItemName, quantity: newItemQuantity, unit: newItemUnit })
             .then(response => {
                 // clear inputs
                 setNewItemName('');
                 setNewItemQuantity('');
                 setNewItemUnit('');
+                setRequiredName(false);
+                setRequiredQuantity(false);
+                setRequiredUnit(false);
 
                 props.getItems();// setup getItems
             })
             .catch(err => {
-                alert('Error Adding Items');
+                alert('Please fill the required fields');
                 console.log(err);
             })
+        }
+        else {
+            Swal.fire({
+                text: 'Please fill out the required fields'
+            })
+            if (newItemName === '') {
+                setRequiredName(true)
+            }
+            if (newItemQuantity === '') {
+                setRequiredQuantity(true)
+            }
+            if (newItemUnit === '') {
+                setRequiredUnit(true)
+            }
+        }
+
     };
 
     //Update Item PUT request:
@@ -75,6 +96,35 @@ function AddItem(props) {
         }
     }
 
+    const requiredNameField = () => {
+        if (requiredName) {
+            return 'item-input-box red-background'
+        }
+        else {
+            return 'item-input-box'
+        }
+    }
+
+    const requiredQuantityField = () => {
+        if (requiredQuantity){
+            return 'quantity-input-box red-background'
+        }
+        else {
+            return 'quantity-input-box'
+        }
+    }
+
+    const requiredUnitField = () => {
+        if (requiredUnit){
+            return 'input-box red-background'
+        }
+        else {
+            return 'input-box'
+        }
+    }
+
+    // const place
+
     return (
         <>
             <h1>Add an Item</h1>
@@ -83,8 +133,9 @@ function AddItem(props) {
                     Item
                 </label>
                 <input
+                    placeholder="Required"
                     type="text"
-                    className='item-input-box'
+                    className={requiredNameField()}
                     value={newItemName}
                     name="itemInput"
                     onChange={(evt) => setNewItemName(evt.target.value)}
@@ -94,8 +145,9 @@ function AddItem(props) {
                         Quantity
                     </label>
                     <input
-                        type="text"
-                        className='quantity-input-box'
+                        placeholder="Required"
+                        type="number"
+                        className={requiredQuantityField()}
                         value={newItemQuantity}
                         name="quantityInput"
                         onChange={(evt) => setNewItemQuantity(evt.target.value)}
@@ -104,8 +156,9 @@ function AddItem(props) {
                         Unit
                     </label>
                     <input
+                        placeholder="Required"
                         type="Unit"
-                        className='input-box'
+                        className={requiredUnitField()}
                         value={newItemUnit}
                         name="unitInput"
                         onChange={(evt) => setNewItemUnit(evt.target.value)}

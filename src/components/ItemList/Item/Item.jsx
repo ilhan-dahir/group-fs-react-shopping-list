@@ -16,10 +16,19 @@ function Item(props) {
 
     const editItemId = props.newItem.editItemId;
     const setEditItemId = props.newItem.setEditItemId;
+    
+    const item = props.item
 
+    const applyPurchasedCSS = () => {
+        if (item.purchaseStatus) {
+            return 'grey item-card'
+        }
+        else {
+            return 'item-card bisque'
+        }
+    }
 
     function buy(itemId) {
-
         axios({
             method: 'PUT',
             url: `/items/${itemId}`
@@ -29,7 +38,6 @@ function Item(props) {
             alert('error getting items');
             console.log(err);
         })
-
     }
 
 
@@ -49,15 +57,17 @@ function Item(props) {
         // console.log(itemRendered.purchaseStatus);
         // console.log(itemRendered.name);
         if (itemRendered.purchaseStatus === false) {
+            // setIsPurchased(false);
             return (
                 <div className='button-div'>
-                    <button onClick={() => {buy(itemRendered.id)}}>Buy</button> 
-                    <button onClick={() => {removeFromItemList(itemRendered.id)}}>Remove</button>
+                    <button className='green' onClick={() => {buy(itemRendered.id)}}>Buy</button> 
+                    <button className='red' onClick={() => {removeFromItemList(itemRendered.id)}}>Remove 🗑️</button>
                 </div>
             )
         }
         else {
-            return <p>Purchased</p>
+            // setIsPurchased(true);
+            return <p>✅ Purchased ✅</p>
         }
     }
 
@@ -83,15 +93,11 @@ function Item(props) {
  
 
     return (
-        <div className='item-card-container'>
-            {props.itemListArray.map(item => (
-                <div className='item-card' key={item.id}>
-                    <button onClick={() => {editItem(item)}}>Edit</button>
-                    <h3>{item.name}</h3>
-                    <h3>{item.quantity} {item.unit}</h3>
-                    {Buttons(item)}
-                </div>
-            ))}
+        <div className={applyPurchasedCSS()} key={item.id}>
+            <button onClick={() => {editItem(item)}}>Edit</button>
+            <h3>{item.name}</h3>
+            <h3>{item.quantity} {item.unit}</h3>
+            {Buttons(item)}
         </div>
     )
 }

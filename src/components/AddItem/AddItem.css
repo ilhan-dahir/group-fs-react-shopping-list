@@ -20,3 +20,12 @@
     margin-top: 10px;
     font-size: 16px;
 }
+
+.red-background{
+    border: 1px solid #f9002ed2;
+    /* background-color: #f9002ed2; */
+}
+.red-background::placeholder{
+    color: red
+
+}
